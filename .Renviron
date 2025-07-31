@@ -1,0 +1,14 @@
+# Conexão para o banco "RECEITAF_linkage"
+DB_HOST_RECEITAF=localhost
+DB_PORT_RECEITAF=5432
+DB_USER_RECEITAF=postgres
+DB_PASSWORD_RECEITAF=123
+DB_NAME_RECEITAF=Dados_RFB
+
+
+# Conexão para o banco "testes"
+DB_HOST_TESTES=localhost
+DB_PORT_TESTES=5432
+DB_USER_TESTES=postgres
+DB_PASSWORD_TESTES=123
+DB_NAME_TESTES=testes
