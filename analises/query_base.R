@@ -76,6 +76,9 @@ silver <- dbGetQuery(
   "
 )
 
+
+sicredi <- 
+
 silver_sx <- silver |> 
   mutate(
     rating_sexo_masc = sx_masculino / (sx_masculino + sx_feminino + sx_ign)*100,

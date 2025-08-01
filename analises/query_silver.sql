@@ -146,5 +146,26 @@ select
 select bcp.*, e.*, es.uf from bc_chave_pix bcp 
 left join empresa e on bcp.cnpj_basico = e.cnpj_basico
 left join estabelecimento es on bcp.cnpj_basico = es.cnpj_basico 
-where bcp."Nome" like '%SICREDI%' and es.identificador_matriz_filial =1
+where bcp."Nome" like '%SICREDI%' 
+and es.identificador_matriz_filial = 1 
+and bcp."Data" = '2024-08-31'
 
+
+
+-- SICREDI NESSES TERRITÓRIOS
+select * from estabelecimento es  
+	left join empresa e 
+		on es.cnpj_basico = e.cnpj_basico 
+	left join munic_comp mu
+		on es.municipio = mu.codigo 
+where e.razao_social like '%SICREDI%'
+	and mu.cd_mun_7 in (5000203, 1700301, 1700400, 5201108, 2901403, 1701903, 1702109, 1702158, 1702208, 1702554,
+					  1702901, 1703008, 2903201, 2903904, 5002308, 1703701, 1703800, 5002704, 1703842, 1502152,
+					  1703867, 2102804, 1705102, 1704600, 1705508, 1716703, 5003207, 1707009, 1707108, 1707405,
+					  2104057, 2911105, 1708205, 1708254, 5208707, 1708304, 1709302, 1709500, 2913200, 5004304,
+					  1710904, 5004908, 5005004, 4113700, 2919553, 1712504, 1712702, 1713304, 1713601, 1713700,
+					  1714203, 1714880, 2309300, 1505494, 1721000, 1716109, 1716208, 2923704, 1505536, 1716505,
+					  1716604, 1717008, 1717503, 1717909, 1718006, 2109007, 5006903, 1718204, 5218300, 1718303,
+					  1718402, 5107040, 2109502, 2926202, 5007109, 3543402, 1506195, 2927408, 1718907, 1719004,
+					  1720101, 2928901, 1720150, 1507300, 1507458, 2111300, 5007901, 1720655, 5107909, 1720804,
+					  1720903, 5008008, 2211001, 1721208, 5008305, 1721307, 1722081)
