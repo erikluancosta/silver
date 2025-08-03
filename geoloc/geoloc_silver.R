@@ -233,3 +233,6 @@ final <- base_final_linkage |>
          base_origem
   )
 
+rm(base_final_linkage)
+
+save(final, file='outputsw?')
