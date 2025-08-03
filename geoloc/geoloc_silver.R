@@ -133,7 +133,7 @@ base_final_linkage <- base_final_linkage |>
   mutate(cep5 = substr(as.character(cep), 1, 5))
 
 # LINKAGE
-source("R/algoritmo.R")
+source("conectar/algoritmo.R")
 
 # Rodada 1
 base_final_linkage <- base_final_linkage |> 
@@ -235,4 +235,20 @@ final <- base_final_linkage |>
 
 rm(base_final_linkage)
 
-save(final, file='outputsw?')
+save(final, file='outputs/geoloc_silver.RData')
+
+
+final <- final |> 
+  mutate(latitude_cp = latitude_final,
+         longitude_cp = longitude_final)
+
+
+library(sf)
+final$latitude <- as.numeric(final$latitude_final)
+final$longitude <- as.numeric(final$longitude_final)
+
+final_geo <- final |> 
+  filter(!is.na(latitude), !is.na(longitude)) |> 
+  st_as_sf(coords = c("longitude", "latitude"), crs = 4326) # WGS 84
+
+st_write(final_geo, dsn = con, layer = "cnpj_geocodificados_silver", append = FALSE)
